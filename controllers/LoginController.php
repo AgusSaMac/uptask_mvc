@@ -232,30 +232,4 @@ class LoginController {
             'alertas' => $alertas
         ]);
     }
-
-    public static function error() 
-    {
-        $mail = new PHPMailer;
-        $mail->isSMTP();
-        $mail->SMTPDebug = 2;
-        $mail->Host = $_ENV['MAIL_HOST'];
-        $mail->SMTPSecure = $_ENV['MAIL_SECURE'];
-        $mail->AuthType = $_ENV['MAIL_AUTH'];
-        $mail->Port = $_ENV['MAIL_PORT'];
-        $mail->SMTPAuth = true;
-        $mail->Username = $_ENV['MAIL_USER'];
-        $mail->Password = $_ENV['MAIL_PASSWORD'];
-        $mail->setFrom($_ENV['MAIL_USER'], 'Your Name');
-        $mail->addReplyTo($_ENV['MAIL_USER'], 'Your Name');
-        $mail->addAddress($_ENV['MAIL_RECEIVER'], 'Receiver Name');
-        $mail->Subject = 'Checking if PHPMailer works';
-        $mail->msgHTML(file_get_contents('message.html'), __DIR__);
-        $mail->Body = 'This is just a plain text message body';
-        //$mail->addAttachment('attachment.txt');
-        if (!$mail->send()) {
-            echo 'Mailer Error: ' . $mail->ErrorInfo;
-        } else {
-            echo 'The email message was sent.';
-        }
-    }
 }

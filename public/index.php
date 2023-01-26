@@ -17,7 +17,6 @@ $router->get('/logout',[LoginController::class,'logout']);
 // Crear Cuenta
 $router->get('/crear',[LoginController::class,'crear']);
 $router->post('/crear',[LoginController::class,'crear']);
-$router->get('/mailer-error',[LoginController::class, 'error']);
 
 //Resetear Password
 $router->get('/olvide',[LoginController::class,'olvide']);
