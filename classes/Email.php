@@ -29,14 +29,16 @@ class Email {
         $mail->isSMTP();
         $mail->Host = $_ENV['MAIL_HOST'];
         $mail->SMTPAuth = true;
+        $mail->SMTPDebug = 0;
         $mail->Username = $_ENV['MAIL_USER'];
         $mail->Password = $_ENV['MAIL_PASSWORD'];
-        $mail->SMTPSecure = 'tls';
+        $mail->SMTPSecure = $_ENV['MAIL_SECURE'];
+        $mail->AuthType = $_ENV['MAIL_AUTH'];
         $mail->Port = $_ENV['MAIL_PORT'];
  
         // Contenido del email
-        $mail->setFrom('cuentas@uptask.com');
-        $mail->addAddress($this->email);
+        $mail->setFrom($_ENV['MAIL_USER'], 'cuentas@uptask.agustinsanchez.dev');
+        $mail->addAddress($this->email,$this->nombre);
         $mail->Subject = 'Confirma tu cuenta';
  
         // Habilitar HTML
